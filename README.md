@@ -113,9 +113,9 @@ used to customize `chat'` mode output, the specific attributes in the object tab
 Option | Description | Displays the result
 ---|---|---
 now | At this moment, the precision is ms, the default value is `now` | now
-lostms | effects when within a second up to now  , the definition of the number of milliseconds up to now.，The default is `milliseconds ago` | 100 milliseconds ago
-lostMinute | effects when within a minute up to now  , the definition of the number of minutes up to now.，The default is `minutes ago` |4 minutes ago
-lostHour | effects when within a hour up to now  , the definition of the number of hours up to now.，The default is ` hours ago` |3 hours ago
+lostms | Put into effect when within a second up to now  , the definition of the number of milliseconds up to now.，The default is `milliseconds ago` | 100 milliseconds ago
+lostMinute | Put into effect when within a minute up to now  , the definition of the number of minutes up to now.，The default is `minutes ago` |4 minutes ago
+lostHour | Put into effect when within a hour up to now  , the definition of the number of hours up to now.，The default is ` hours ago` |3 hours ago
 yesterday | Put into effect when whthin 24 hours to 48 hours up to now , the definition of yesterday's statement, the default value is `yesterday` |  yesterday 18:30
 theDayBefore | Put into effect when whthin 48 hours to 72 hours up to now , the definition of  the day before's statement, the default value is `yesterday`  |  the day before 08:30
 thisWeek | Put into effect when whthin 3 days to 7 days up to now , the definition of  this week's statement, the default value is `''` (Displays the full name of the week)  | Sunday 08:30 
