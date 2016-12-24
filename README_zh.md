@@ -6,12 +6,11 @@
 
 # chatime
 
-> This is a javascript plug-in that allows you to generate chat-time
+> 这是一个可以生成chat-timeJavascript插件
 
 ## What's chat-time
 
-Chat-time is a date format that is often used in social chat software (such as Twitter, Weibo, facebook, etc.) and is often presented in this format: **18:13 yesterday**, **2 minutes ago**, **Sunday 22：10**, and so on.
-
+chat-time是一种常常用在社交聊天软件（例如推特、微博、facebook等等）中格式化的日期格式，他们往往以这种格式呈现：昨天18:13、两分钟前、星期五22:10，等等。
 ## Easy to use
 
 
