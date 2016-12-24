@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>chatime.js Demo</title>
+    <style>
+        .body-bg {
+            background-image: url(img/chatime.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 100%;
+            padding-bottom: 62.0%;
+            height: 0;
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            opacity: 0.2;
+        }
+
+        .chatime {
+            width: 33.33%;
+            float: left;
+        }
+
+        .chatime-container {
+            width: 100%;
+            position: fixed;
+        }
+
+        .chatime-item {
+            color: #222;
+            width: 100%;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            font-family: "Microsoft YaHei UI";
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="body-bg"></div>
+<div class="chatime-container">
+    <div class="chatime"></div>
+    <div class="chatime"></div>
+    <div class="chatime"></div>
+    <div class="chatime"></div>
+</div>
+
+<script src="src/chatime-1.0.0.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+
+    var nowStamp      = new Date().getTime();
+    var oneSecondAgo  = new Date().getTime() - 1000;
+    var onehoursAgo   = new Date().getTime() - 1000 * 3600;
+    var twoMinutesAgo = new Date().getTime() - 1000 * 120;
+    var sevenHoursAgo = new Date().getTime() - 1000 * 3600 * 7;
+    var yesterday     = new Date().getTime() - 1000 * 3600 * 25;
+    var theDayBefore  = new Date().getTime() - 1000 * 4444 * 50;
+    var weekday       = new Date().getTime() - 1000 * 10000 * 50;
+    var lastWeekday   = new Date().getTime() - 1000 * 20000 * 50;
+
+    var enTime = chatime.get( {
+        time:   [ nowStamp, oneSecondAgo, twoMinutesAgo, onehoursAgo,
+            sevenHoursAgo, yesterday, theDayBefore, weekday,
+            lastWeekday ],
+        type:   'chat',
+        config: {
+            lang: 'en',
+        },
+    } )
+
+    var zhTime = chatime.get( {
+        time:   [ nowStamp, oneSecondAgo, twoMinutesAgo, onehoursAgo,
+            sevenHoursAgo, yesterday, theDayBefore, weekday,
+            lastWeekday ],
+        type:   'chat',
+        config: {
+            lang: 'zh',
+            langSet: {
+
+            }
+        },
+    } )
+
+
+
+    var normalTime = chatime.get( {
+        time: [ nowStamp, oneSecondAgo, twoMinutesAgo, onehoursAgo,
+            sevenHoursAgo, yesterday, theDayBefore, weekday,
+            lastWeekday ],
+        type: 'mm-dd hh:mm:ss',
+    } )
+
+    function insertResult( array, index ) {
+        for ( var i = 0, l = array.length; i < l; i++ ) {
+            var temp         = document.createElement( 'div' );
+            temp.textContent = array[ i ];
+            temp.className   = 'chatime-item';
+            document.getElementsByClassName( 'chatime' )[ index ].appendChild( temp )
+        }
+    }
+
+    insertResult( enTime, 0 );
+    insertResult( zhTime, 1 );
+    insertResult( normalTime, 2 );
+
+</script>
+</body>
+</html>
