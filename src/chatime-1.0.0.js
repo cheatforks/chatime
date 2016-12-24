@@ -344,13 +344,8 @@
                 diff = {},
                 normalDate = new getFormatDate( date ),
                 legalCheck = !!( getStampDiff( date, new Date()) >= 0 );
-                //console.log( date );
             if( legalCheck ){
                 diff = getExpDiff( date,  new Date(), 'all' );
-
-                //console.log(diff.second + lang.lostSecond)
-                //console.log(lang.lostSecond)
-                //console.log( diff );
                 result =
                     diff.year !== 0 ?
                         normalDate.yyyymmddhhmm() :
@@ -540,9 +535,7 @@
             }
         }
 
-        chatime.prototype.get = get;
-        chatime.prototype.getDiff = getExpDiff;
-        chatime.prototype.newDate = getDateObject;
+        chatime.prototype.get = get; chatime.prototype.getDiff = getExpDiff; chatime.prototype.newDate = getDateObject;
         window.chatime = chatime();
 
     })( window );

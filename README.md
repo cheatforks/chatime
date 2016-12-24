@@ -79,11 +79,13 @@ The current plug-in built-in bilingual two languages, you can also configure the
 ## Get the current time
 
 You can get the current time by not specifying the time (`option.time`) and then specifying the output format (` option.type`, the default output format is `yyyy-mm-dd hh: mm: ss`).
+
 <br/>
 
 ## Timestamp format
 
 Since timestamps are separated by 13 bits and 10 bits, a timestamp format is required when outputting timestamps. `Option.type =" ms "` will get a timestamp of 13 bits, `option.type =" s "` will get a 10-bit timestamp.
+
 <br/>
 
 ## API
@@ -143,7 +145,7 @@ Specify the start date and end date, pay attention to this method only supports 
 
 Specify the exact form of difference to be obtained
 
-可选项 | 说明 
+Option | Description 
 :---:|:---: 
 'year' | Gets the years difference
 'month' | Get the months difference
