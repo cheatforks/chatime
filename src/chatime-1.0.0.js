@@ -61,10 +61,10 @@
                  lostMinute: '分钟前',
                  lostSecond: '秒前',
                  lostms: '毫秒前',
-                 toDay: '今天',
+                 today: '今天',
                  yesterday: '昨天',
                  theDayBefore: '前天',
-                 thisWeek: '周',
+                 thisWeek: '星期',
                  lastWeek: '上周',
                  weekDes: ['一', '二', '三', '四', '五', '六', '日']
             },
@@ -75,7 +75,7 @@
                 lostMinute: ' minutes ago',
                 lostSecond: ' seconds ago',
                 lostms: ' milliseconds ago',
-                toDay: 'today',
+                today: 'today',
                 yesterday: 'yesterday',
                 theDayBefore: 'the day before',
                 thisWeek: '',
@@ -541,6 +541,7 @@
         }
 
         chatime.prototype.get = get;
+        chatime.prototype.getDiff = getExpDiff;
         chatime.prototype.newDate = getDateObject;
         window.chatime = chatime();
 

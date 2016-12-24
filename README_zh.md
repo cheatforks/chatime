@@ -1,39 +1,36 @@
-
-
 [![chatime 1.0.0](https://img.shields.io/badge/chatime-1.0.0-brightgreen.svg)](https://github.com/toxichl/chatime)  [![](https://img.shields.io/packagist/l/doctrine/orm.svg)]() [![download](https://img.shields.io/badge/downloads-6KB-brightgreen.svg)]() [![download](https://img.shields.io/badge/language-zh%20%26%20en-ff69b4.svg)]() 
 
 ![chatime][1]
 
 # chatime
 
-> 这是一个可以生成chat-timeJavascript插件
+> 一个简单实用的chatime时间处理插件，并包含所有你想要的时间处理功能。
 
-## What's chat-time
+## 什么是chat-time
 
-chat-time是一种常常用在社交聊天软件（例如推特、微博、facebook等等）中格式化的日期格式，他们往往以这种格式呈现：昨天18:13、两分钟前、星期五22:10，等等。
-## Easy to use
+chat-time是一种常常用在社交聊天软件（例如推特、微博、facebook等等）中格式化的日期格式，他们的时间格式往往不固定，而通常以这种格式呈现：`昨天18:13`、`2分钟前`、`星期五 22:10`，等等。
 
+## 简单使用
 
+输入一个日期，它可以是字符串、时间戳、时间对象，或者是包含上述基础元素的数组。
 
-import a date, which can be a **String**, a timestamp（**Number**）, a time object（**Date**）, or an **Array** containing the above base elements.
+接着指定输出格式，它可以是类似于`“yyyy-mm-dd hh:mm”`这样的格式字符串，也可是是`“ms”`或`“s”`（用于输出时间戳），也可以是`“chat”`，这也是本插件的主要目标。
 ```
-var time = chatime.get( {
-    time:  new Date().getTime() - 1000 * 120,
-    type:  'chat',
-} )
-```
-Then specify the output format, it can be formatted string similar to **"yyyy-mm-dd hh: mm"**, and **"ms"** or **"s"** (this outputs timestamp), it apparently can be **"chat"** which is the main goal of this plug-in.
+var option = {
+    time: dateElement,
+    type: 'yyyy-mm-dd hh:mm'
+};
 
-Then you can get the date format you want:
-
-```bash
-2 minutes ago
+var time = chatime.get(option);
 ```
 
-## Basic Supported formats
-The supported formats are as follows：
-```bash
-yyyy
+然后你就能获得你想要的日期格式了。
+
+## 基础格式
+除了`“chat”`类型外，以下是支持基本日期格式，特别强调，可以忽略大小写，可以忽略分隔符：
+
+```
+yyyy 
 yyyy-mm
 yyyy-mm-dd
 mm-dd
@@ -44,7 +41,7 @@ yyyy-mm-dd hh:mm:ss
 mm-dd hh:mm
 mm-dd hh:mm:ss
 ```
-eamaple：
+示例：
 ```bash
 var normalTime = chatime.get( {
     time: [ '12-24 18:18:18', 1234567890000 ],
@@ -52,23 +49,107 @@ var normalTime = chatime.get( {
 } )
 ```
 
-This call technique is a major upgrade in v1.0.0 version and its design ideas originated in the AngularJS filter (Date) , but have their own innovation, we can ignore the case (month in AngularJS must be written in MM), you can omit the separation (Delimiters default to `"-"`).
+这个调用技巧是v1.0.0版本的重大提升，它的思路来源于AngularJS的过滤器（Date）,但又有自己的创新，因为我们可以忽略大小写（AngularJS的月份必须写成MM），也可以省略分隔符（分隔符默认为"-"）。
 
-## Language support
+## 语言支持
 
-English and Chinese, and you can also configure the format you want to modify with the `config.lang / config.langSet`, see the demo for more details.
+暂时中英双语，你也可以通过 `option.config.lang / option.config.langSet` 来配置日期格式，查看demo可以查看更多详情。
 
-## Get the time now
 
-Do not specify the time, and specify the type (or not), you can get the current time.
+## 获取当前时间
 
-## Timestamp
+不指定时间（`option.time`）即可，然后制定输出格式（`option.type`）(也可以不指定)，你便可以获得当前时间。
 
-Since the timestamp has 10 bits and 13 bits, it is necessary to specify the type of the timestamp when obtaining the timestamp, where `"ms"` represents the 13-bit time stamp, `"s"` represents the 10-bit timestamp.
+## 时间戳格式
+
+由于时间戳分13位和10位的区别，因此在输出时间戳时，需要指定时间戳的格式，`option.type = "ms"`将会获得13位的时间戳，`option.type = "s"`将会获得10位的时间戳
+
+## API
+
+### chatime.get(option)
+
+
+> option.time `String` `Number` `Date` `Array`
+
+定义待转换的时间，若为字符串，必须符合基础格式要求，分隔符可以为`-`或`/`，若为Number，长度必须为10位或13位，若为时间对象，其数组元素必须符合上述要求才能得到正常输出结果
+
+> option.type `String`
+
+定义输出时间的格式，可以是`'chat'`,则输出`chatime`, 也可以是`ms`、`'s'`,则输出13位或10位时间戳，也可以是上述的基础日期格式，并忽略分隔符、大小写。
+
+
+> option.config.lang `String`
+
+用于切换`'chat'`模式输出的语言，中文为`'zh'`,英文为`'en'`;
+
+> option.config.langSet `[object object]`
+
+用来自定义`'chat'`模式输出的语言，详情可见下表：
+
+选项 | 说明 | 显示结果
+---|---|---
+langSet.now | 现在这一刻，精度为ms，默认值为`现在`| 现在
+langSet.lostms | 距离现在一秒内生效，定义距离现在的毫秒数，默认值为`毫秒前`  | 100毫秒前
+langSet.lostMinute | 距离现在一小时内生效，定义距离现在的分钟数，默认值为`分钟前` |4分钟前
+langSet.lostHour | 距离现在一天内生效，定义距离现在的小时数，默认值为 `小时前` |3小时前
+langSet.yesterday | 距离现在24小时到48小时生效，定义昨天的表述，默认值为`昨天` | 昨天 18:30
+langSet.theDayBefore | 距离现在48小时到72小时生效，定义前天的表述，默认值为`前天`  | 前天 08:30
+langSet.thisWeek | 距离现在3天到7天生效，定义本周内除了今天、昨天、前天外的天数的表述，默认值为`星期`  | 星期一 08:30
+langSet.thisWeek | 距离现在7天到14天生效，定义上周天数的表述，默认值为`上周`  | 上周三 08:30
+langSet.weekDes | 定义星期的表达，默认值为`['一', '二', '三', '四', '五', '六', '日']` | 星期一
+
+说明：
+1. `'chat'`模式下，一年外的默认显示格式为`yyyy-mm-dd hh:mm`，一年以内的默认格式为`mm-dd hh:mm`，一年以内，距离现在14天以内的时间格式遵循上表。
+2. 上述所有选项都是可选的。若只定义一项，则生效一项，其余选项采用默认值。
+
+
+
+### chatime.newDate(input)
+
+获取时间对象，或者包含时间对象的数组。
+
+> input `String` `Number` `Date` `Array`
+
+### chatime.getDiff(start, end, type)
+
+获取两个时间对象之间的差值。
+
+> start \| end `Date`
+
+
+
+指定开始日期和结束日期，注意这个方法只支持时间对象输入，可以结合 `chatime.newDate` 使用。
+
+> type
+
+`String`
+
+指定获取的具体差值形式
+
+
+可选项 | 说明 
+:---:|:---: 
+'year' | 获得年份差
+'month' | 获得月份差
+'day' | 获得天数差
+'hour' | 获得小时差
+'minute' | 获得分钟差
+'millisecond' | 获得毫秒差
+'all' | 获得包含所有上述差值的对象
+
+
+## 最后
+
+1. 如果有其他的本插件无法满足的时间/日期处理需求，可以 [发邮件](https://github.com/toxichl) 给我，或者提issue;
+2. 预告下一个项目，一个使用 ` ionic / cordova / Angular 1.x` 开发APP时的代码模板，开发的缘由是这种开发模式有一个缺点，就是在不同的控制器中将会有较多重复的逻辑，封装一套通用可行的控制器代码模板可以极大地促进`ionic SPA`的开发，欢迎关注，谢谢。
 
 ---
 
 **chatime** - GitHub © [toxichl](https://github.com/toxichl), Released under the [MIT]() License.<br>
 
 
-  [1]: https://raw.githubusercontent.com/toxichl/chatime/master/img/chatime.jpg
+  [1]: https://raw.githubusercontent.com/toxichl/chatime/master/img/chatime-poster.jpg
+
+
+
+

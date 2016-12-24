@@ -61,7 +61,7 @@ English and Chinese, and you can also configure the format you want to modify wi
 
 ## Get the time now
 
-Do not specify the time, and specify the type (or not), you can get the current time.
+Do not specify the time（`option.time`）, and specify the type（`option.type`） (or not), you can get the current time.
 
 ## Timestamp
 
@@ -72,4 +72,4 @@ Since the timestamp has 10 bits and 13 bits, it is necessary to specify the type
 **chatime** - GitHub © [toxichl](https://github.com/toxichl), Released under the [MIT]() License.<br>
 
 
-  [1]: https://raw.githubusercontent.com/toxichl/chatime/master/img/chatime.jpg
+  [1]: https://raw.githubusercontent.com/toxichl/chatime/master/img/chatime-poster.jpg
