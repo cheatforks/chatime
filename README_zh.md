@@ -4,12 +4,13 @@
 
 # chatime
 
-> 一个简单实用的chatime时间处理插件，并包含所有你想要的时间处理功能。
+> 一个简单实用的chatime时间处理插件，拥有你需要的时间处理功能。
 
+<br/>
 ## 什么是chat-time
 
-chat-time是一种常常用在社交聊天软件（例如推特、微博、facebook等等）中格式化的日期格式，他们的时间格式往往不固定，而通常以这种格式呈现：`昨天18:13`、`2分钟前`、`星期五 22:10`，等等。
-
+chat-time是一种常常用在社交聊天软件（如推特、微博、facebook）中格式化的日期格式，他们的时间格式往往不固定，而通常以这种格式呈现：`昨天18:13`、`2分钟前`、`星期五 22:10`，等等。
+<br/>
 ## 简单使用
 
 输入一个日期，它可以是字符串、时间戳、时间对象，或者是包含上述基础元素的数组。
@@ -25,22 +26,22 @@ var time = chatime.get(option);
 ```
 
 然后你就能获得你想要的日期格式了。
-
+<br/>
 ## 基础格式
-除了`“chat”`类型外，以下是支持基本日期格式，特别强调，可以忽略大小写，可以忽略分隔符：
+除了`“chat”`类型外，以下是支持基本日期格式，特别强调，可以忽略大小写和分隔符：
 
-```
-yyyy 
-yyyy-mm
-yyyy-mm-dd
-mm-dd
-hh:mm
-hh:mm:ss
-yyyy-mm-dd hh:mm
-yyyy-mm-dd hh:mm:ss
-mm-dd hh:mm
-mm-dd hh:mm:ss
-```
+
+- yyyy 
+- yyyy-mm
+- yyyy-mm-dd
+- mm-dd
+- hh:mm
+- hh:mm:ss
+- yyyy-mm-dd hh:mm
+- yyyy-mm-dd hh:mm:ss
+- mm-dd hh:mm
+- mm-dd hh:mm:ss
+
 示例：
 ```bash
 var normalTime = chatime.get( {
@@ -49,40 +50,48 @@ var normalTime = chatime.get( {
 } )
 ```
 
-这个调用技巧是v1.0.0版本的重大提升，它的思路来源于AngularJS的过滤器（Date）,但又有自己的创新，因为我们可以忽略大小写（AngularJS的月份必须写成MM），也可以省略分隔符（分隔符默认为"-"）。
-
+这个调用技巧是 v1.0.0 版本的重大提升，它的思路来源于 [AngularJS 1.x][2] 的过滤器（$filter Date）,但又有自己的创新，因为我们可以忽略大小写（在AngularJS 1.x中，月份必须写成`MM`），也可以省略分隔符（`"-"`）。
+<br/>
 ## 语言支持
 
 暂时中英双语，你也可以通过 `option.config.lang / option.config.langSet` 来配置日期格式，查看demo可以查看更多详情。
-
+<br/>
 
 ## 获取当前时间
 
 不指定时间（`option.time`）即可，然后制定输出格式（`option.type`）(也可以不指定)，你便可以获得当前时间。
-
+<br/>
 ## 时间戳格式
 
 由于时间戳分13位和10位的区别，因此在输出时间戳时，需要指定时间戳的格式，`option.type = "ms"`将会获得13位的时间戳，`option.type = "s"`将会获得10位的时间戳
-
+<br/>
 ## API
 
 ### chatime.get(option)
 
 
-> option.time `String` `Number` `Date` `Array`
 
-定义待转换的时间，若为字符串，必须符合基础格式要求，分隔符可以为`-`或`/`，若为Number，长度必须为10位或13位，若为时间对象，其数组元素必须符合上述要求才能得到正常输出结果
+> option.time : `<String> <Number> <Date> <Array>`    
 
-> option.type `String`
+
+
+定义待转换的时间，若为字符串，必须符合基础格式要求，分隔符可以为`-`或`/`，若为Number，长度必须为10位或13位，若为时间对象，其数组元素必须符合上述要求才能得到正常输出结果。
+<br/>
+> option.type : `<String> `
+
+
 
 定义输出时间的格式，可以是`'chat'`,则输出`chatime`, 也可以是`ms`、`'s'`,则输出13位或10位时间戳，也可以是上述的基础日期格式，并忽略分隔符、大小写。
 
+<br/>
 
-> option.config.lang `String`
+> option.config.lang : `<String>`
 
-用于切换`'chat'`模式输出的语言，中文为`'zh'`,英文为`'en'`;
 
-> option.config.langSet `[object object]`
+
+用于切换`'chat'`模式输出的语言，中文为`'zh'`,英文为`'en'`。
+<br/>
+> option.config.langSet : `<Object>`
 
 用来自定义`'chat'`模式输出的语言，详情可见下表：
 
@@ -100,29 +109,28 @@ langSet.weekDes | 定义星期的表达，默认值为`['一', '二', '三', '�
 
 说明：
 1. `'chat'`模式下，一年外的默认显示格式为`yyyy-mm-dd hh:mm`，一年以内的默认格式为`mm-dd hh:mm`，一年以内，距离现在14天以内的时间格式遵循上表。
-2. 上述所有选项都是可选的。若只定义一项，则生效一项，其余选项采用默认值。
-
-
-
+2. 上述所有选项都是可选的。若只定义一项，则生效一项，其余选项采用默认值；
+<br/>
 ### chatime.newDate(input)
-
 获取时间对象，或者包含时间对象的数组。
 
-> input `String` `Number` `Date` `Array`
+> input : `<String> <Number> <Date> <Array>`
+
+<br/>
 
 ### chatime.getDiff(start, end, type)
 
 获取两个时间对象之间的差值。
-
-> start \| end `Date`
+<br/>
+> start \| end : `<Date>`
 
 
 
 指定开始日期和结束日期，注意这个方法只支持时间对象输入，可以结合 `chatime.newDate` 使用。
+<br/>
+> type : `<String>`
 
-> type
 
-`String`
 
 指定获取的具体差值形式
 
@@ -135,9 +143,9 @@ langSet.weekDes | 定义星期的表达，默认值为`['一', '二', '三', '�
 'hour' | 获得小时差
 'minute' | 获得分钟差
 'millisecond' | 获得毫秒差
-'all' | 获得包含所有上述差值的对象
+'all' | 获得包含所有上述所有差值的对象
 
-
+<br/>
 ## 最后
 
 1. 如果有其他的本插件无法满足的时间/日期处理需求，可以 [发邮件](https://github.com/toxichl) 给我，或者提issue;
@@ -149,7 +157,4 @@ langSet.weekDes | 定义星期的表达，默认值为`['一', '二', '三', '�
 
 
   [1]: https://raw.githubusercontent.com/toxichl/chatime/master/img/chatime-poster.jpg
-
-
-
-
+  [2]: https://angularjs.org/
