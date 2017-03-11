@@ -1,8 +1,0 @@
-- [首页](zh-CN/)
-- [快速上手](zh-CN/quickStart)
-- [Chat模式](zh-CN/chatMode)
-- [使用小技巧](zh-CN/useTips)
-- [基础格式](zh-CN/basicFormat)
-- [API](zh-CN/API)
-- [Demo](zh-CN/demo)
-- [致谢](zh-CN/specialThanks)

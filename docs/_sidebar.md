@@ -1,0 +1,8 @@
+- [首页](/)
+- [快速上手](/quickStart)
+- [Chat模式](/chatMode)
+- [使用小技巧](/useTips)
+- [基础格式](/basicFormat)
+- [API](/API)
+- [Demo](/demo)
+- [致谢](/specialThanks)
