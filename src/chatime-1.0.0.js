@@ -442,19 +442,19 @@
                 errorMsg = '错误的使用方式';
 
             if ( CHAT ){
+
                 if ( ARRAY ){
-                    //console.log( 'chat1' );
                     var dateArr = getDateObject(option.time);
-                    //console.log( 'chat2' );
-                    //console.log( dateArr );
+
                     var arr = [];
                     for ( var i = 0, l = dateArr.length; i < l; i++ ){
-                        //console.log( 'chat3' );
                         arr.push( getchatTime(dateArr[i]) )
                     }
                     lang = lang_zh;
                     return arr || errorMsg;
-                } else if( STRING ){
+                } else if( STRING || NUMBER ){
+
+                    console.log(1);
                     var dateStr = getDateObject(option.time);
                     return getchatTime(dateStr);
                 }
